@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'store/images/2.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home:index' %}">Home</a></span> <span>Blog</span></p>
+            <h1 class="mb-0 bread">Blog</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 ftco-animate">
+						<h1 class="mb-3">Interesting Pizza Facts</h1>
+            <p> <h4> 1. Square pizza </h4> </p>
+            <p> The shape of the original Italian pizza was square. Today it is better known as "Sicilian". At first, Romano cheese was also used to make pizza, and then they switched to mozzarella, beloved by many today.</p>
+            <p>
+              <img src="{% static 'store/images/squarepizza.jpg' %}" alt="" class="img-fluid">
+            </p>
+            <p> <h4> 2. The average slice of pizza is 25% protein. </h4> </p>
+            <p>This was reported by the US Department of Agriculture. In addition, pizza provides 35% of the daily protein intake.</p>
+            <p> <h4> 3. One of the first documented online purchases was pizza. </h4> </p>
+            <p>Pepperoni with mushrooms and extra cheese. It was one of the first recorded purchases made online around 1994. More purchases are now made online than any other way.</p>
+<p>         <h4> 4. Pizza Eating Record. </h4> </p>
+            <p>In 2006, Cristian Dumitru from Romania set a new world record by eating 90 kg of pizza in a week. Another record belongs to the Japanese Takeru Kobayashi, who in 2014 ate 62 slices of pizza (15 and a half pizzas) in 12 minutes.</p>
+            <p> <h4> 5. Pizza Margherita was named after Queen Margherita of Italy. </h4> </p>
+            <p>Raffaele Esposito, a pizza maker, was commissioned by the Royal Palace to create a pizza in honor of Queen Margherita of Savoy. Of the three different pizzas he made, the queen's favorite was the pizza in the colors of the Italian flag - red (tomatoes), green (basil) and white (mozzarella).</p>
+              <img src="images/image_2.jpg" alt="" class="img-fluid">
+            </p>
+            <div class="tag-widget post-tag-container mb-5 mt-5">
+              <div class="tagcloud">
+                <a href="#" class="tag-cloud-link">Life</a>
+                <a href="#" class="tag-cloud-link">Sport</a>
+                <a href="#" class="tag-cloud-link">Tech</a>
+                <a href="#" class="tag-cloud-link">Travel</a>
+              </div>
+            </div>
+            
+            <div class="about-author d-flex p-4 bg-light">
+              <div class="bio align-self-md-center mr-4">
+                <img src="{% static 'store/images/person_1.jpg' %}" alt="Image placeholder" class="img-fluid mb-4">
+              </div>
+              <div class="desc align-self-md-center">
+                <h3>Lance Smith</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+              </div>
+            </div>
+
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5">6 Comments</h3>
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>Ivan Ivanov</h3>
+                    <div class="meta">May 1, 2023 at 2:21pm</div>
+                    <p>Does pizza provide 35% of your daily protein intake? Need to comply urgently)</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+                </li>
+
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>Petr Petrov</h3>
+                    <div class="meta">May 2, 2023 at 2:51pm</div>
+                    <p>Now I know everything about pizza!)</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+
+                  <ul class="children">
+                    <li class="comment">
+                      <div class="vcard bio">
+                        <img src="images/person_1.jpg" alt="Image placeholder">
+                      </div>
+                      <div class="comment-body">
+                        <h3>Hasbulla Magomedov</h3>
+                        <div class="meta">May 3, 2022 at 3:11pm</div>
+                        <p>pizza is the "bomb" honestly</p>
+                        <p><a href="#" class="reply">Reply</a></p>
+                      </div>
+
+
+                      <ul class="children">
+                        <li class="comment">
+                          <div class="vcard bio">
+                            <img src="images/person_1.jpg" alt="Image placeholder">
+                          </div>
+                          <div class="comment-body">
+                            <h3>Adam Sandler</h3>
+                            <div class="meta">May 2, 2023 at 3:34pm</div>
+                            <p> ))))))))))))) </p>
+                            <p><a href="#" class="reply">Reply</a></p>
+                          </div>
+
+                            <ul class="children">
+                              <li class="comment">
+                                <div class="vcard bio">
+                                  <img src="images/person_1.jpg" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                  <h3>Cristiano Ronaldo</h3>
+                                  <div class="meta">May 3, 2022 at 6:51pm</div>
+                                  <p>I can't eat pizza - I'm on a diet(</p>
+                                  <p><a href="#" class="reply">Reply</a></p>
+                                </div>
+                              </li>
+                            </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>Vasiliy Utkin</h3>
+                    <div class="meta">May 5, 2023 at 7:31pm</div>
+                    <p>Wanted to eat after reading!</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+                </li>
+              </ul>
+              <!-- END comment-list -->
+              
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                <form action="#" class="p-5 bg-light">
+                  <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" class="form-control" id="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" class="form-control" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" class="form-control" id="website">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div> <!-- .col-md-8 -->
+          <div class="col-lg-4 sidebar ftco-animate">
+            <div class="sidebar-box">
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <span class="icon ion-ios-search"></span>
+                  <input type="text" class="form-control" placeholder="Search...">
+                </div>
+              </form>
+            </div>
+            <div class="sidebar-box ftco-animate">
+            	<h3 class="heading">Categories</h3>
+              <ul class="categories">
+                <li><a href="#">Pizza <span>(12)</span></a></li>
+                <li><a href="#">Pasta <span>(22)</span></a></li>
+                <li><a href="#">Beverages <span>(37)</span></a></li>
+                <li><a href="#">Appetizers <span>(42)</span></a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3 class="heading">Recent Blog</h3>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3 class="heading">Tag Cloud</h3>
+              <div class="tagcloud">
+                <a href="#" class="tag-cloud-link">fruits</a>
+                <a href="#" class="tag-cloud-link">tomatoe</a>
+                <a href="#" class="tag-cloud-link">mango</a>
+                <a href="#" class="tag-cloud-link">apple</a>
+                <a href="#" class="tag-cloud-link">carrots</a>
+                <a href="#" class="tag-cloud-link">orange</a>
+                <a href="#" class="tag-cloud-link">pepper</a>
+                <a href="#" class="tag-cloud-link">eggplant</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3 class="heading">Paragraph</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section> <!-- .section -->
+  {% endblock %}
