@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image: url({% static 'store/images/12.jpg'%});">
+	      <div class="slider-item" style="background-image: url({% static 'store/images/bg2.jpg'%});">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -19,7 +20,7 @@
 	        </div>
 	      </div>
 
-	      <div class="slider-item" style="background-image: url({% static 'store/images/13.jpg'%});">
+	      <div class="slider-item" style="background-image: url({% static 'store/images/bg7.jpg'%});">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -35,6 +36,9 @@
 	      </div>
 	    </div>
     </section>
+
+
+
 
     <section class="ftco-section">
 			<div class="container">
@@ -93,7 +97,7 @@
 					<div class="col-md-8">
 						<div class="row">
 							<div class="col-md-6 order-md-last align-items-stretch d-flex">
-								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url({% static 'store/images/category1.png'%});">
+								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image:  url({% static 'store/images/category111.jpg' %});">
 									<div class="text text-center">
 										<h2>Migliorepizza</h2>
 										<p>Little italy in St-Petersburg</p>
@@ -102,12 +106,12 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url({% static 'store/images/category2.png'%});">
+								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url({% static 'category/category-pizza.jpg' %});">
 									<div class="text px-3 py-1">
 										<h2 class="mb-0"><a href="#">Pizza</a></h2>
 									</div>
 								</div>
-								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url({% static 'store/images/category3.jpg'%});">
+								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url({% static 'category/category-pasta.png'%});">
 									<div class="text px-3 py-1">
 										<h2 class="mb-0"><a href="#">Pasta</a></h2>
 									</div>
@@ -117,12 +121,12 @@
 					</div>
 
 					<div class="col-md-4">
-						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url({% static 'store/images/category-3.jpg'%});">
+						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url({% static 'category/Category-beverages-1.jpg' %});">
 							<div class="text px-3 py-1">
 								<h2 class="mb-0"><a href="#">Beverages</a></h2>
 							</div>		
 						</div>
-						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url({% static 'store/images/category-4.jpg'%});">
+						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url({% static 'category/category-appetizers.png' %});">
 							<div class="text px-3 py-1">
 								<h2 class="mb-0"><a href="#">Appetizers</a></h2>
 							</div>
@@ -139,7 +143,7 @@
           	<span class="subheading" style="font-size: 44px;">Popular</span>
             <p>These dishes are ordering a little more lately...</p>
           </div>
-        </div>   		
+        </div>
     	</div>
     	<div class="container">
     		<div class="row">
@@ -182,9 +186,9 @@
 				{% endfor %}
     		</div>
     	</div>
-    </section>
-		
-		<section class="ftco-section img" style="background-image: url({% static 'store/images/bg_3.jpg'%});">
+    </section >
+
+		<section class="ftco-section img" style="background-image: url({% static 'store/images/bdiscount1.jpg'%});">
     	<div class="container">
 				<div class="row justify-content-end">
           <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -202,7 +206,16 @@
         </div>   		
     	</div>
     </section>
-
+<style>
+    .col-md-6 {
+        padding-left: 1.5cm;
+    }
+    #timer .time {
+        display: inline-block;
+        width: 170px;
+        text-align: center;
+    }
+</style>
     <section id="testimony" class="ftco-section testimony-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
