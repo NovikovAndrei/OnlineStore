@@ -108,12 +108,12 @@
 							<div class="col-md-6">
 								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url({% static 'category/category-pizza.jpg' %});">
 									<div class="text px-3 py-1">
-										<h2 class="mb-0"><a href="#">Pizza</a></h2>
+										<h2 class="mb-0"><a href="{% url 'shop:shop' %}?category=Pizza">Pizza</a></h2>
 									</div>
 								</div>
 								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url({% static 'category/category-pasta.png'%});">
 									<div class="text px-3 py-1">
-										<h2 class="mb-0"><a href="#">Pasta</a></h2>
+										<h2 class="mb-0"><a href="{% url 'shop:shop' %}?category=Pasta">Pasta</a></h2>
 									</div>
 								</div>
 							</div>
@@ -123,12 +123,12 @@
 					<div class="col-md-4">
 						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url({% static 'category/Category-beverages-1.jpg' %});">
 							<div class="text px-3 py-1">
-								<h2 class="mb-0"><a href="#">Beverages</a></h2>
+								<h2 class="mb-0"><a href="{% url 'shop:shop' %}?category=Beverages">Beverages</a></h2>
 							</div>		
 						</div>
 						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url({% static 'category/category-appetizers.png' %});">
 							<div class="text px-3 py-1">
-								<h2 class="mb-0"><a href="#">Appetizers</a></h2>
+								<h2 class="mb-0"><a href="{% url 'shop:shop' %}?category=Appetizers">Appetizers</a></h2>
 							</div>
 						</div>
 					</div>
