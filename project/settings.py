@@ -28,10 +28,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv('DEBUG') == True
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == "TRUE"
 
-# ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS').split(',')]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS').split(',')]
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -131,8 +131,14 @@ USE_TZ = True
 # else:
 #    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
+STATIC_URL = 'static/'
+if 'localhost' in ALLOWED_HOSTS:
+    STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATIC_URL = "static/"
+# STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
