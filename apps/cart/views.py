@@ -4,7 +4,7 @@ from .models import Cart, Product
 from django.db.models import F, OuterRef, Subquery, DecimalField, ExpressionWrapper, Sum, Case, When
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.urls import reverse
 
 class CartView(View):
     def get(self, request):
@@ -58,7 +58,9 @@ class CartViewAdd(View):
         else:
             cart_item = Cart(user=user, product=product)
         cart_item.save()
-        return redirect('shop:shop')
+        # return redirect('shop:shop')
+        data = request.GET.urlencode()
+        return redirect(reverse('shop:shop') + "?" + data)
 
 class CartViewDel(View):
   def get(self, request, product_id):
