@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from .models import Cart
+from .models import Cart, Wishlist
 from apps.shop.models import Product
 from django.db.models import F, OuterRef, Subquery, DecimalField, ExpressionWrapper, Sum, Case, When
 from django.contrib.auth.models import User
@@ -73,3 +73,39 @@ class CartViewDel(View):
 class WishlistView(View):
     def get(self, request):
         return render(request, 'cart/wishlist.html')
+
+class WishlistView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            wishlist = Wishlist.objects.filter(user=request.user)
+            return render(request, "cart/wishlist.html", {'wishlist': wishlist})
+        return redirect('login:login')
+
+    def post(self, request, id):
+        # Логика для добавления товара в список желаний
+        if request.user.is_authenticated:
+            product = get_object_or_404(Product, id=id)
+            wishlist_item = Wishlist.objects.filter(user=request.user, product=product)
+
+            if wishlist_item.exists():
+                return redirect('shop:shop')
+            else:
+                wishlist_item = Wishlist(user=request.user, product=product)
+                wishlist_item.save()
+                return redirect('shop:shop')
+        return redirect('login:login')
+
+    def delete(self, request, id):
+        # Логика для удаления товара из списка желаний
+        product = get_object_or_404(Product, id=id)
+        wishlist_item = Wishlist.objects.filter(user=request.user, product=product)
+        wishlist_item.delete()
+        return redirect('cart:wishlist')
+
+    def dispatch(self, request, *args, **kwargs):
+        if 'method' in kwargs:
+            if kwargs['method'] == 'remove':
+                return self.delete(request, id=kwargs['id'])
+            elif kwargs['method'] == 'add':
+                return self.post(request, id=kwargs['id'])
+        return super().dispatch(request, *args, **kwargs)

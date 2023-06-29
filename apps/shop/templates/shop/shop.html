@@ -56,7 +56,7 @@
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">{{product.name}}</a></h3>
+    						<h3><a href="{% url 'shop:productsingle' product.id %}">{{product.name}}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 									{% if product.discount_value %}
@@ -74,7 +74,7 @@
 	    							<a href="{% url 'shop:buy' product.id %}" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    							<a href="{% url 'cart:add_to_wishlist' product.id %}" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>
