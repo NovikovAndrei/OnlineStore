@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from .models import Cart, Product
+from .models import Cart
+from apps.shop.models import Product
 from django.db.models import F, OuterRef, Subquery, DecimalField, ExpressionWrapper, Sum, Case, When
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -8,8 +9,7 @@ from django.urls import reverse
 
 class CartView(View):
     def get(self, request):
-        user_cart = Cart.objects.filter(user=request.user). \
-            select_related('product')
+        user_cart = Cart.objects.filter(user=request.user).select_related('product')
 
         total_discount = Case(When(product__discount__value__gte=0,
                                    product__discount__date_begin__lte=timezone.now(),

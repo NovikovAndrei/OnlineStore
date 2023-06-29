@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.shop',
     'apps.checkout',
     'apps.blog',
+    'apps.login',
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -131,7 +135,7 @@ USE_TZ = True
 # else:
 #    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 if 'localhost' in ALLOWED_HOSTS:
     STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
 else:
