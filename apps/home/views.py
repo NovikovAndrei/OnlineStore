@@ -41,4 +41,6 @@ class ContactView(View):
         return render(request, 'home/contact.html')
 
 
-
+class ShippingView(View):
+    def get(self, request):
+        return render(request, 'home/shipping.html')
