@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'store/images/22.jpg' %}');"
+     xmlns="http://www.w3.org/1999/html">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home:index' %}">Home</a></span> <span>Shipping Information</span></p>
+            <h1 class="mb-0 bread">Shipping Information</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+			<div class="container">
+				<div class="row">
+<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <img src="{% static 'store/images/about1.jpg'%}" alt="About Image" style="height: 87%;">
+</div>
+
+					<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
+	          <div class="heading-section-bold mb-4 mt-md-5">
+	          	<div class="ml-md-0">
+		            <h4 class="mb-4">At our authentic Italian cuisine delivery service, we strive to provide a seamless and convenient shipping
+                        experience for our customers.</h4>
+	            </div>
+	          </div>
+	          <div class="pb-md-5">
+                  <p>Here is some essential information regarding our shipping process:</p>
+	          	<p><h5> Delivery Area:</h5>
+                    We currently offer delivery services within the St-Petersburg area.
+                    Please ensure that your delivery address falls within our designated delivery zone before placing an order.
+                    If you have any questions about the delivery area, feel free to contact our customer support team.</p>
+
+                  <p><h5>Delivery Time:</h5>
+                    We understand the importance of timely delivery. Our dedicated delivery team works diligently to ensure that your order reaches you as quickly
+                    as possible. The estimated delivery time will be provided to you during the checkout process. However, please note that delivery times may
+                    vary depending on factors such as order volume and traffic conditions.</p>
+
+                  <p><h5>Delivery Charges:</h5>
+                    We offer free delivery on orders over $30. For orders below this threshold, a nominal delivery fee may apply.
+                    The exact delivery charges will be displayed at the time of checkout. We believe in transparency, and there are no hidden fees or additional
+                    charges involved in our shipping process.</p>
+
+                <p>Thank you for choosing our authentic Italian cuisine delivery service. We look forward to serving you and bringing
+                    the taste of Italy to your doorstep with our delicious dishes and reliable shipping services.</p>
+
+							<p><a href="{% url 'shop:shop' %}" class="btn btn-primary">Shop now</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+      <div class="container py-4">
+        <div class="row d-flex justify-content-center py-5">
+          <div class="col-md-6">
+          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
+          	<span>Get e-mail updates about our latest shops and special offers</span>
+          </div>
+          <div class="col-md-6 d-flex align-items-center">
+            <form action="#" class="subscribe-form">
+              <div class="form-group d-flex">
+                <input type="text" class="form-control" placeholder="Enter email address">
+                <input type="submit" value="Subscribe" class="submit px-3">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+			<div class="container">
+				<div class="row no-gutters ftco-services">
+          <div class="col-lg-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-shipped"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Free Shipping</h3>
+                <span>On order over $100</span>
+              </div>
+            </div>      
+          </div>
+          <div class="col-lg-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-diet"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Always Fresh</h3>
+                <span>Product well package</span>
+              </div>
+            </div>    
+          </div>
+          <div class="col-lg-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-award"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Superior Quality</h3>
+                <span>Quality Products</span>
+              </div>
+            </div>      
+          </div>
+          <div class="col-lg-3 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services mb-md-0 mb-4">
+              <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+            		<span class="flaticon-customer-service"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Support</h3>
+                <span>24/7 Support</span>
+              </div>
+            </div>      
+          </div>
+        </div>
+			</div>
+		</section>
+    {% endblock %}
