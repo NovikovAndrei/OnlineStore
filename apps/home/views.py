@@ -48,3 +48,7 @@ class ShippingView(View):
 class ReturnsView(View):
     def get(self, request):
         return render(request, 'home/returns.html')
+
+class TermsConditionsView(View):
+    def get(self, request):
+        return render(request, 'home/termsconditions.html')
