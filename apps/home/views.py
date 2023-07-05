@@ -44,3 +44,7 @@ class ContactView(View):
 class ShippingView(View):
     def get(self, request):
         return render(request, 'home/shipping.html')
+
+class ReturnsView(View):
+    def get(self, request):
+        return render(request, 'home/returns.html')

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexShopView, AboutView, ContactView, ShippingView
+from .views import IndexShopView, AboutView, ContactView, ShippingView, ReturnsView
 
 app_name = "home"
 
@@ -8,4 +8,5 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('shipping/', ShippingView.as_view(), name='shipping'),
+    path('returns/', ReturnsView.as_view(), name='returns'),
 ]
