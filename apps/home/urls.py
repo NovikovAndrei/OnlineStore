@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import IndexShopView, AboutView, ContactView, ShippingView, ReturnsView, TermsConditionsView
+from .views import IndexShopView, AboutView, ContactView, ShippingView, ReturnsView, TermsConditionsView, \
+    PrivacyPolicyView
 
 app_name = "home"
 
@@ -10,4 +11,5 @@ urlpatterns = [
     path('shipping/', ShippingView.as_view(), name='shipping'),
     path('returns/', ReturnsView.as_view(), name='returns'),
     path('termsconditions/', TermsConditionsView.as_view(), name='termsconditions'),
+    path('privacypolicy/', PrivacyPolicyView.as_view(), name='privacypolicy')
 ]
