@@ -56,3 +56,7 @@ class TermsConditionsView(View):
 class PrivacyPolicyView(View):
     def get(self, request):
         return render(request, 'home/privacy-policy.html')
+
+class FAQView(View):
+    def get(self, request):
+        return render(request, 'home/faq.html')
