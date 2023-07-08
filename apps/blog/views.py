@@ -1,10 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from .models import Article
+from .models import Article, Comment
 
-# class BlogView(View):
-#     def get(self, request):
-#         return render(request, 'blog/blog.html')
 
 class BlogView(View):
     def get(self, request):
@@ -16,4 +13,13 @@ class BlogView(View):
 class BlogSingleView(View):
     def get(self, request, article_id=1):
         data = Article.objects.get(id=article_id)
-        return render(request, 'blog/blog-single.html', {"article": data})
+        comments = Comment.objects.filter(article=data)
+        return render(request, 'blog/blog-single.html', {"article": data, "comments": comments})
+
+    def post(self, request, article_id=1):
+        data = Article.objects.get(id=article_id)
+        content = request.POST.get('content')
+        if content:
+            comment = Comment.objects.create(article=data, user=request.user, content=content)
+            comment.save()
+        return redirect('blog:blogsingle', article_id=article_id)
