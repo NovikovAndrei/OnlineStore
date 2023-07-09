@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, UserProfileForm
 from django.contrib.auth.models import User
 
 
@@ -30,21 +30,45 @@ class LogoutView(View):
         return redirect('home:index')
 
 
+# class SignUpView(View):
+#
+#     def get(self, request):
+#         return render(request, 'login/signup.html')
+#
+#     def post(self, request):
+#         form = CustomUserCreationForm(data=request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data.get('username')
+#             email = form.cleaned_data.get('email')
+#             password = form.cleaned_data.get('password1')
+#             user = User.objects.create_user(username=username, email=email,
+#                                             password=password)
+#             user.save()
+#             login(request, user)
+#             return redirect('home:index')
+#         return render(request, 'login/signup.html', {"errors": form.errors})
+
 class SignUpView(View):
 
     def get(self, request):
-        return render(request, 'login/signup.html')
+        form = CustomUserCreationForm()
+        profile_form = UserProfileForm()
+        return render(request, 'login/signup.html', {'form': form, 'profile_form': profile_form})
 
     def post(self, request):
         form = CustomUserCreationForm(data=request.POST)
-        if form.is_valid():
+        profile_form = UserProfileForm(data=request.POST, files=request.FILES)
+        if form.is_valid() and profile_form.is_valid():
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
-            user = User.objects.create_user(username=username, email=email,
-                                            password=password)
-            user.save()
-            login(request, user)
-            return redirect('home:index')
-        return render(request, 'login/signup.html', {"errors": form.errors})
+            user = User.objects.create_user(username=username, email=email, password=password)
 
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            login(request, user, 'django.contrib.auth.backends.ModelBackend')
+            return redirect('home:index')
+
+        return render(request, 'login/signup.html', {"form": form, "profile_form": profile_form, "errors": form.errors})

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Article, Comment
-
+from django.contrib.auth.models import User
 
 class BlogView(View):
     def get(self, request):
@@ -14,7 +14,7 @@ class BlogSingleView(View):
     def get(self, request, article_id=1):
         data = Article.objects.get(id=article_id)
         comments = Comment.objects.filter(article=data)
-        return render(request, 'blog/blog-single.html', {"article": data, "comments": comments, "request": request})
+        return render(request, 'blog/blog-single.html', {"article": data, "comments": comments})
 
     def post(self, request, article_id=1):
         if request.user.is_authenticated:

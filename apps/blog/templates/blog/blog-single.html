@@ -41,7 +41,7 @@
           {% for comment in comments %}
           <li class="comment">
             <div class="vcard bio">
-              <img src="{% static 'blog/admin.jpg' %}" alt="Image placeholder">
+              <img src="{{ comment.user.userprofile.avatar.url }}" alt="Image placeholder">
             </div>
             <div class="comment-body">
               <h3>{{ comment.user.username }}</h3>
@@ -49,7 +49,7 @@
               <p>{{ comment.content }}</p>
               {% if request.user.is_authenticated and comment.user == request.user %}
               <p><a href="{% url 'blog:delete_comment' comment.id %}" class="reply">Delete</a></p>
-              {% endif %}
+            {% endif %}
             </div>
           </li>
           {% endfor %}

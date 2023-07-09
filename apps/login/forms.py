@@ -2,8 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UsernameField
-from django.forms import EmailField
-
+from django.forms import EmailField, ModelForm
+from .models import UserProfile
 
 # def validate_email(value):
 #     if User.objects.filter(email=value).exists():
@@ -26,3 +26,8 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         field_classes = {"username": UsernameField}
+
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['avatar']
