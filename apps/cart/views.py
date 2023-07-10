@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from .models import Cart, Wishlist
 from apps.shop.models import Product
-from django.db.models import F, OuterRef, Subquery, DecimalField, ExpressionWrapper, Sum, Case, When
+from django.db.models import F, DecimalField, Sum, Case, When
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
@@ -44,11 +44,14 @@ class CartViewBuy(View):
             if cart_items:
                 cart_item = cart_items[0]
                 cart_item.quantity += 1
+                cart_item.save()  # Сохраняем изменения в объекте cart_item
             else:
                 cart_item = Cart(user=user, product=product)
                 cart_item.save()
-                return redirect('cart:cart')
+            return redirect('cart:cart')
         return redirect('login:login')
+
+
 
 class CartViewAdd(View):
     def get(self, request, product_id):
