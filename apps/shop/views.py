@@ -73,3 +73,6 @@ class ProductSingleView(View):
     def get(self, request, product_id=1):
         data = Product.objects.get(id=product_id)
         return render(request, 'shop/product-single.html', {"product": data})
+
+
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from .models import Testimony
 
 
 class IndexShopView(View):
@@ -60,3 +61,8 @@ class PrivacyPolicyView(View):
 class FAQView(View):
     def get(self, request):
         return render(request, 'home/faq.html')
+
+class TestimonyView(View):
+    def get(self, request):
+        testimonies = Testimony.objects.all()
+        return render(request, 'home/index.html', {'testimonies': testimonies})

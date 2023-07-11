@@ -40,16 +40,22 @@ class CartViewBuy(View):
         if request.user.is_authenticated:
             product = get_object_or_404(Product, id=product_id)
             user = get_object_or_404(User, id=request.user.id)
+
+            # Получение значения количества товара из запроса GET
+            quantity = int(request.GET.get('quantity', 1))
+
             cart_items = Cart.objects.filter(user=user, product=product)
             if cart_items:
                 cart_item = cart_items[0]
-                cart_item.quantity += 1
+                cart_item.quantity += quantity
                 cart_item.save()  # Сохраняем изменения в объекте cart_item
             else:
-                cart_item = Cart(user=user, product=product)
+                cart_item = Cart(user=user, product=product, quantity=quantity)
                 cart_item.save()
+
             return redirect('cart:cart')
         return redirect('login:login')
+
 
 
 
