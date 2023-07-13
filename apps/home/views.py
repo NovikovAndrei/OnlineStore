@@ -5,37 +5,42 @@ from .models import Testimony
 
 class IndexShopView(View):
     def get(self, request):
-        context = {'data': [
-            {'name': 'FOUR CHEESE PIZZA',
-             'discount': None,
-             'price_before': 14.00,
-             'id': 1,
-             'url': 'products/pizza-4cheese.jpg'},
-            {'name': 'Prosciutto Funghi Pizza',
-             'discount': None,
-             'price_before': 15.00,
-             'id': 2,
-             'url': 'products/pizza-proshuto.jpg'},
-            {'name': 'BEEF TARTARE WITH PARMESAN MOUSSE',
-             'discount': None,
-             'price_before': 10.00,
-             'id': 3,
-             'url': 'products/beeftartar.jpg'},
-            {'name': 'MAROCHINO',
-             'discount': None,
-             'price_before': 4.00,
-             'id': 4,
-             'url': 'products/marochino.jpg'},
-
-
-
-        ]}
+        testimonies = Testimony.objects.all()
+        context = {
+            'data': [
+                {'name': 'FOUR CHEESE PIZZA',
+                 'discount': None,
+                 'price_before': 14.00,
+                 'id': 1,
+                 'url': 'products/pizza-4cheese.jpg'},
+                {'name': 'Prosciutto Funghi Pizza',
+                 'discount': None,
+                 'price_before': 15.00,
+                 'id': 2,
+                 'url': 'products/pizza-proshuto.jpg'},
+                {'name': 'BEEF TARTARE WITH PARMESAN MOUSSE',
+                 'discount': None,
+                 'price_before': 10.00,
+                 'id': 3,
+                 'url': 'products/beeftartar.jpg'},
+                {'name': 'MAROCHINO',
+                 'discount': None,
+                 'price_before': 4.00,
+                 'id': 4,
+                 'url': 'products/marochino.jpg'},
+            ],
+            'testimonies': testimonies
+        }
 
         return render(request, 'home/index.html', context)
 
 class AboutView(View):
     def get(self, request):
-        return render(request, 'home/about.html')
+        testimonies = Testimony.objects.all()
+        context = {
+            'testimonies': testimonies
+        }
+        return render(request, 'home/about.html', context)
 
 class ContactView(View):
     def get(self, request):
@@ -62,7 +67,4 @@ class FAQView(View):
     def get(self, request):
         return render(request, 'home/faq.html')
 
-class TestimonyView(View):
-    def get(self, request):
-        testimonies = Testimony.objects.all()
-        return render(request, 'home/index.html', {'testimonies': testimonies})
+
