@@ -70,13 +70,12 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="{% url 'shop:shop' %}">Menu</a>
               	<a class="dropdown-item" href="{% url 'cart:wishlist' %}">Favorites</a>
-                <a class="dropdown-item" href="{% url 'shop:productsingle' %}">Single Product</a>
                 <a class="dropdown-item" href="{% url 'cart:cart' %}">Cart</a>
                 <a class="dropdown-item" href="{% url 'checkout:checkout' %}">Checkout</a>
               </div>
             </li>
+              <li class="nav-item"><a href="{% url 'shop:shop' %}" class="nav-link">Menu</a></li>
 	          <li class="nav-item"><a href="{% url 'home:about' %}" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="{% url 'blog:blog' %}" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="{% url 'home:contact' %}" class="nav-link">Contact</a></li>
