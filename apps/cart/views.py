@@ -6,6 +6,9 @@ from django.db.models import F, DecimalField, Sum, Case, When
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from rest_framework import viewsets, response
+from rest_framework.permissions import IsAuthenticated
+from .serializers import CartSerializer, WishlistSerializer
 
 class CartView(View):
     def get(self, request):
@@ -57,8 +60,6 @@ class CartViewBuy(View):
         return redirect('login:login')
 
 
-
-
 class CartViewAdd(View):
     def get(self, request, product_id):
         if request.user.is_authenticated:
@@ -82,9 +83,9 @@ class CartViewDel(View):
         return redirect('cart:cart')
 
 
-class WishlistView(View):
-    def get(self, request):
-        return render(request, 'cart/wishlist.html')
+# class WishlistView(View):
+#     def get(self, request):
+#         return render(request, 'cart/wishlist.html')
 
 class WishlistView(View):
     def get(self, request):
@@ -121,3 +122,76 @@ class WishlistView(View):
             elif kwargs['method'] == 'add':
                 return self.post(request, id=kwargs['id'])
         return super().dispatch(request, *args, **kwargs)
+
+# API
+
+class CartViewAPI(viewsets.ModelViewSet):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        cart_items = self.get_queryset().filter(product__id=request.data.get('product'))
+        if cart_items:
+            cart_item = cart_items[0]
+            if request.data.get('quantity'):
+                cart_item.quantity += int(request.data.get('quantity'))
+            else:
+                cart_item.quantity += 1
+        else:
+            product = get_object_or_404(Product, id=request.data.get('product'))
+            if request.data.get('quantity'):
+                cart_item = Cart(user=request.user, product=product, quantity=request.data.get('quantity'))
+            else:
+                cart_item = Cart(user=request.user, product=product)
+        cart_item.save()
+        return response.Response({'message': 'Product added to cart'}, status=201)
+
+    def update(self, request, *args, **kwargs):
+        cart_item = get_object_or_404(Cart, id=kwargs['pk'])
+        if request.data.get('quantity'):
+            cart_item.quantity = request.data['quantity']
+        if request.data.get('product'):
+            product = get_object_or_404(Product, id=request.data['product'])
+            cart_item.product = product
+        cart_item.save()
+        return response.Response({'message': 'Product change to cart'}, status=201)
+
+    def destroy(self, request, *args, **kwargs):
+        cart_item = self.get_queryset().get(id=kwargs['pk'])
+        cart_item.delete()
+        return response.Response({'message': 'Product delete from cart'}, status=201)
+
+class WishlistViewAPI(viewsets.ModelViewSet):
+    queryset = Wishlist.objects.all()
+    serializer_class = WishlistSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        wishlist_items = self.get_queryset().filter(product__id=request.data.get('product'))
+        if wishlist_items:
+            wishlist_item = wishlist_items[0]
+        else:
+            product = get_object_or_404(Product, id=request.data.get('product'))
+            wishlist_item = Wishlist(user=request.user, product=product)
+        wishlist_item.save()
+        return response.Response({'message': 'Product added to wishlist'}, status=201)
+
+    def update(self, request, *args, **kwargs):
+        wishlist_item = get_object_or_404(Wishlist, id=kwargs['pk'])
+        if request.data.get('product'):
+            product = get_object_or_404(Product, id=request.data['product'])
+            wishlist_item.product = product
+        wishlist_item.save()
+        return response.Response({'message': 'Product change to wishlist'}, status=201)
+
+    def destroy(self, request, *args, **kwargs):
+        wishlist_item = self.get_queryset().get(id=kwargs['pk'])
+        wishlist_item.delete()
+        return response.Response({'message': 'Product delete from wishlist'}, status=201)

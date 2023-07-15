@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.login',
     'social_django',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'test': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': 'test_db.sqlite3',
     }
+
 }
 
 
