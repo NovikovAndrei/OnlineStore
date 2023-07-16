@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from apps.shop.models import Product
 
+
 class Cart(models.Model):
+   """Модель для козины товаров"""
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    product = models.ForeignKey(Product, on_delete=models.CASCADE)
    quantity = models.IntegerField(default=1)
@@ -12,7 +14,9 @@ class Cart(models.Model):
    def __str__(self):
        return f"{self.user}_{self.product}"
 
+
 class Wishlist(models.Model):
+   """Модель для списка избранных товаров"""
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 

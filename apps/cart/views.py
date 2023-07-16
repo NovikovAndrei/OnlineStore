@@ -10,7 +10,10 @@ from rest_framework import viewsets, response
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CartSerializer, WishlistSerializer
 
+
 class CartView(View):
+    """Отображение корзины товаров"""
+
     def get(self, request):
         if request.user.is_authenticated:
             user_cart = Cart.objects.filter(user=request.user).select_related('product')
@@ -21,7 +24,7 @@ class CartView(View):
                                        then=F('total_price') * F('product__discount__value') / 100),
                                   default=0,
                                   output_field=DecimalField(max_digits=10, decimal_places=2)
-            )
+                                  )
             cart = user_cart.annotate(
                 total_price=F('product__price') * F('quantity'),
                 total_discount=total_discount,
@@ -38,20 +41,22 @@ class CartView(View):
             return render(request, 'cart/cart.html', context)
         return redirect('login:login')
 
+
 class CartViewBuy(View):
+    """Функционал добавления товара в корзину (с переходом на страницу корзины товаров)"""
+
     def get(self, request, product_id):
         if request.user.is_authenticated:
             product = get_object_or_404(Product, id=product_id)
             user = get_object_or_404(User, id=request.user.id)
 
-            # Получение значения количества товара из запроса GET
             quantity = int(request.GET.get('quantity', 1))
 
             cart_items = Cart.objects.filter(user=user, product=product)
             if cart_items:
                 cart_item = cart_items[0]
                 cart_item.quantity += quantity
-                cart_item.save()  # Сохраняем изменения в объекте cart_item
+                cart_item.save()
             else:
                 cart_item = Cart(user=user, product=product, quantity=quantity)
                 cart_item.save()
@@ -61,6 +66,8 @@ class CartViewBuy(View):
 
 
 class CartViewAdd(View):
+    """Добавление в корзину товаров (без перехода на страницу корзины товаров)"""
+
     def get(self, request, product_id):
         if request.user.is_authenticated:
             product = get_object_or_404(Product, id=product_id)
@@ -72,22 +79,23 @@ class CartViewAdd(View):
             else:
                 cart_item = Cart(user=user, product=product)
             cart_item.save()
-            # return redirect('shop:shop')
             data = request.GET.urlencode()
             return redirect(reverse('shop:shop') + "?" + data)
         return redirect('login:login')
+
+
 class CartViewDel(View):
+    """Удаление товаров из корзины"""
+
     def get(self, request, product_id):
         cart_item = Cart.objects.get(user=request.user, product__id=product_id)
         cart_item.delete()
         return redirect('cart:cart')
 
 
-# class WishlistView(View):
-#     def get(self, request):
-#         return render(request, 'cart/wishlist.html')
-
 class WishlistView(View):
+    """Отображение списки избранных товаров"""
+
     def get(self, request):
         if request.user.is_authenticated:
             wishlist = Wishlist.objects.filter(user=request.user)
@@ -123,9 +131,11 @@ class WishlistView(View):
                 return self.post(request, id=kwargs['id'])
         return super().dispatch(request, *args, **kwargs)
 
+
 # API
 
 class CartViewAPI(viewsets.ModelViewSet):
+    """API для корзины товаров"""
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
     permission_classes = (IsAuthenticated,)
@@ -165,7 +175,9 @@ class CartViewAPI(viewsets.ModelViewSet):
         cart_item.delete()
         return response.Response({'message': 'Product delete from cart'}, status=201)
 
+
 class WishlistViewAPI(viewsets.ModelViewSet):
+    """API для списка избранных товаров"""
     queryset = Wishlist.objects.all()
     serializer_class = WishlistSerializer
     permission_classes = (IsAuthenticated,)

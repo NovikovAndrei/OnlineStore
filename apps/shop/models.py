@@ -1,13 +1,17 @@
 from django.db import models
 
+
 class Category(models.Model):
+    """Модель для категорий товара"""
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='static/category', null=True, blank=True)
 
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
+    """Модель для позиций товара"""
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -19,7 +23,9 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Discount(models.Model):
+    """Модель для скидок"""
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     value = models.IntegerField()
     date_begin = models.DateTimeField()
@@ -27,4 +33,3 @@ class Discount(models.Model):
 
     def __str__(self):
         return f"{self.product.name}_{self.value}_{self.date_end}"
-

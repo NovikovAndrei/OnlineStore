@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 
 class LoginView(View):
+    """Отображение авторизации пользователя"""
 
     def get(self, request):
         return render(request, 'login/login.html')
@@ -24,31 +25,15 @@ class LoginView(View):
 
 
 class LogoutView(View):
+    """Функционал выхода из приложения"""
     def get(self, request):
         if request.user.is_authenticated:
             logout(request)
         return redirect('home:index')
 
 
-# class SignUpView(View):
-#
-#     def get(self, request):
-#         return render(request, 'login/signup.html')
-#
-#     def post(self, request):
-#         form = CustomUserCreationForm(data=request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data.get('username')
-#             email = form.cleaned_data.get('email')
-#             password = form.cleaned_data.get('password1')
-#             user = User.objects.create_user(username=username, email=email,
-#                                             password=password)
-#             user.save()
-#             login(request, user)
-#             return redirect('home:index')
-#         return render(request, 'login/signup.html', {"errors": form.errors})
-
 class SignUpView(View):
+    """Функционал авторизации пользователя"""
 
     def get(self, request):
         form = CustomUserCreationForm()
