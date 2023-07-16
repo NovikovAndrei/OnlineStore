@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Testimony
-from markdownify import markdownify as md
 import codecs
 
 class IndexShopView(View):
