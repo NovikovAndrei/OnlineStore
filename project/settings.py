@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'apps.login',
     'social_django',
     'rest_framework',
+    'markdown',
 ]
 
 MIDDLEWARE = [

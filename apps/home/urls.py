@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import IndexShopView, AboutView, ContactView, ShippingView, ReturnsView, TermsConditionsView, \
-    PrivacyPolicyView, FAQView
+    PrivacyPolicyView, FAQView, ReadmeView
 
 app_name = "home"
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('termsconditions/', TermsConditionsView.as_view(), name='termsconditions'),
     path('privacypolicy/', PrivacyPolicyView.as_view(), name='privacypolicy'),
     path('FAQ/', FAQView.as_view(), name='FAQ'),
+    path('readme', ReadmeView.as_view(), name='readme')
 ]

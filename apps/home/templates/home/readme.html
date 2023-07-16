@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>README</title>
+    <style>
+        body {
+            background-image: url("static/store/images/backreadme.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .readme-content {
+            font-size: 24px; /* размер шрифта */
+            color: black; /* Цвет текста */
+        }
+    </style>
+</head>
+<body>
+    <div class="readme-content">
+        {{ readme_content|safe }}
+    </div>
+</body>
+</html>

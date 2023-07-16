@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Testimony
-
+from markdownify import markdownify as md
+import codecs
 
 class IndexShopView(View):
     def get(self, request):
@@ -66,5 +67,16 @@ class PrivacyPolicyView(View):
 class FAQView(View):
     def get(self, request):
         return render(request, 'home/faq.html')
+
+
+class ReadmeView(View):
+    def get(self, request):
+        with codecs.open('readme.md', 'r', encoding='utf-8') as file:
+            readme_content = file.read()
+
+        readme_lines = readme_content.split('\n')
+        readme_html = '<br><br>'.join(readme_lines)
+
+        return render(request, 'home/readme.html', {'readme_content': readme_html})
 
 
