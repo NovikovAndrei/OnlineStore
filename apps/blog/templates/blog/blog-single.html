@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'store/images/22.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home:index' %}">Home</a></span> <span><a href="{% url 'blog:blog' %}">Blog</a></span></p>
+            <h1 class="mb-0 bread">Blog</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 ftco-animate">
+            {% autoescape off %}
+						<h1 class="mb-3">{{article.title}}</h1>
+            {{ article.content|linebreaks }}
+            {% endautoescape %}
+
+            <div class="about-author d-flex p-4 bg-light">
+              <div class="bio align-self-md-center mr-4">
+                <img src="{% static 'blog/admin.jpg' %}" alt="Image placeholder" class="img-fluid mb-4">
+              </div>
+              <div class="desc align-self-md-center">
+                <h3>Italian chef</h3>
+                <p>I am the website administrator and owner of an Italian food delivery restaurant. I have extensive experience in the hospitality
+                   and food service industry, and I take pride in offering authentic Italian cuisine to our customers.</p>
+              </div>
+            </div>
+
+      <!-- Вывод комментариев -->
+      <div class="pt-5 mt-5">
+        <h3 class="mb-5">Comments</h3>
+        <ul class="comment-list">
+          {% for comment in comments %}
+          <li class="comment">
+            <div class="vcard bio">
+              <img src="{{ comment.user.userprofile.avatar.url }}" alt="Image placeholder">
+            </div>
+            <div class="comment-body">
+              <h3>{{ comment.user.username }}</h3>
+              <div class="meta">{{ comment.created_at }}</div>
+              <p>{{ comment.content }}</p>
+              {% if request.user.is_authenticated and comment.user == request.user %}
+              <p><a href="{% url 'blog:delete_comment' comment.id %}" class="reply">Delete</a></p>
+            {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Форма добавления комментария -->
+      <div class="comment-form-wrap pt-5">
+        <h3 class="mb-5">Leave a comment</h3>
+        <form action="{% url 'blog:blogsingle' article_id=article.id %}" method="post" class="p-5 bg-light">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="content">Your Comment</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+          </div>
+        </form>
+      </div>
+          </div> <!-- .col-md-8 -->
+          <div class="col-lg-4 sidebar ftco-animate">
+            <div class="sidebar-box">
+                <div class="form-group">
+                </div>
+
+            </div>
+              <img src="/{{article.image}}" alt="" class="img-fluid" style="width: 100%;">
+            </div>
+          </div>
+            </div>
+
+
+<!--      </div>-->
+    </section> <!-- .section -->
+  {% endblock %}

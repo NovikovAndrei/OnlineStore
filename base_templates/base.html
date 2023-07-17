@@ -5,6 +5,7 @@
   <!DOCTYPE html>
 <html lang="en">
   <head>
+    <a href="{% url 'home:readme' %}"><strong>Тут находится файл README в котором я постарался описать весь реализованный функционал моего приложения</strong></a>
     <title>MIGLIOREPIZZA</title>
       <link rel="icon" type="image/png" href="{% static 'store/images/pizza.png' %}">
     <meta charset="utf-8">
@@ -33,20 +34,6 @@
     <link rel="stylesheet" href="{% static 'store/css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/style.css'%}">
 
-  <style>
-<!--      body {-->
-<!--        background-color: Gainsboro;-->
-<!--      }-->
-
-<!--      .heading-section {-->
-<!--        background-color: white;-->
-<!--      }-->
-
-<!--      #testimony {-->
-<!--        background-color: white;-->
-<!--      }-->
-
-    </style>
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-dark">
@@ -83,22 +70,30 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="{% url 'shop:shop' %}">Menu</a>
               	<a class="dropdown-item" href="{% url 'cart:wishlist' %}">Favorites</a>
-                <a class="dropdown-item" href="{% url 'shop:productsingle' %}">Single Product</a>
                 <a class="dropdown-item" href="{% url 'cart:cart' %}">Cart</a>
                 <a class="dropdown-item" href="{% url 'checkout:checkout' %}">Checkout</a>
               </div>
             </li>
+              <li class="nav-item"><a href="{% url 'shop:shop' %}" class="nav-link">Menu</a></li>
 	          <li class="nav-item"><a href="{% url 'home:about' %}" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="{% url 'blog:blog' %}" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="{% url 'home:contact' %}" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="{% url 'cart:cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-
+              {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link">{{request.user.username}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login:logout' %}">Logout</a></li>
+                {% if  request.user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="/admin/">To Admin</a></li>
+                {% endif %}
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login:login' %}">Login</a></li>
+                {% endif %}
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
+
     <!-- END nav -->
 		{% endblock %}
 
@@ -131,7 +126,7 @@
             <div class="ftco-footer-widget mb-4 ml-md-5">
               <h2 class="ftco-heading-2">Menu</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                <li><a href="{% url 'shop:shop' %}" class="py-2 d-block">Shop</a></li>
                 <li><a href="{% url 'home:about' %}" class="py-2 d-block">About</a></li>
                 <li><a href="{% url 'blog:blog' %}" class="py-2 d-block">Journal</a></li>
                 <li><a href="{% url 'home:contact' %}" class="py-2 d-block">Contact Us</a></li>
@@ -143,13 +138,13 @@
               <h2 class="ftco-heading-2">Help</h2>
               <div class="d-flex">
 	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	                <li><a href="{% url 'home:shipping' %}" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="{% url 'home:returns' %}" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="{% url 'home:termsconditions' %}" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="{% url 'home:privacypolicy' %}" class="py-2 d-block">Privacy Policy</a></li>
 	              </ul>
 	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="{% url 'home:FAQ' %}" class="py-2 d-block">FAQs</a></li>
 	                <li><a href="{% url 'home:contact' %}" class="py-2 d-block">Contact</a></li>
 	              </ul>
 	            </div>
